@@ -1,0 +1,25 @@
+﻿@model HW_EF.Models.Person
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Login</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="People" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <partial name="_UserAddFormPartial" model="@Model"></partial>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Home" asp-action="Index">Back to List</a>
+</div>
+

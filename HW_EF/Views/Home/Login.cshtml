@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+@model Person
+
+<section id="contact" class="subscription">
+	<div class="container">
+		<div class="subscribe-title text-center">
+			<h2 style="font-weight:bolder;">Login</h2>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="subscription-input-group login-form-group">
+					<form class="login-form" asp-controller="Home" asp-action="Login" method="post">
+
+						<label asp-for="Email" class="form-label"></label>
+						<input asp-for="Email" class="subscription-input-form" placeholder="Email">
+						<br />
+						<label asp-for="Password" class="form-label"></label>
+						<input asp-for="Password" type="password" class="subscription-input-form" placeholder="Password">
+						
+						<button type="submit" class="appsLand-btn subscribe-btn">Login</button>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="subscribe-title text-center">
+			<a class="registration-link" asp-controller="People" asp-action="Create">Registration</a>
+		</div>
+	</div>
+
+</section>

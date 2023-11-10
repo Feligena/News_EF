@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "PersonalArea";
+}
+@model PersonalArea
+
+@if (Model != null)
+{
+    <section id="user-menu" class="my-navbar">
+        <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy" data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    @* <a class="navbar-brand" asp-controller="Home" asp-action="Index">Личный<span>кабинет</span></a> *@
+                    <a class="navbar-brand" asp-controller="Home" asp-action="Index">Личный<span>кабинет</span> @Model.User.Nickname</a>
+                </div>
+                <div>
+                    <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
+                        <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                            <li class="scroll">
+                                <a asp-controller="Posts" asp-action="Create">Add</a>
+                            </li>
+                            <li class="scroll">
+                                <a asp-controller="People" asp-action="Details">Settings</a>
+                            </li>
+                            <li class="scroll">
+                                <a asp-controller="#" asp-action="#">Exit</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <section id="blog" class="blog">
+        <div class="container">
+            <div class="section-header">
+                <h2>Your posts</h2>
+            </div>
+            @if (TempData.ContainsKey("Status"))
+            {
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Notification!</strong>@TempData["Status"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            @if (Model.Posts != null)
+            {
+                <div class="blog-content">
+                    <div class="row">
+
+                        @foreach (var item in Model.Posts)
+                        {
+                            <div class="col-md-4 col-sm-6">
+                                <partial name="_NewsCardPartial" model="@item"></partial>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="subscribe-title text-center">
+                    <h2 style="font-weight:bolder;">No Content</h2>
+                </div>
+            }
+
+        </div>
+    </section>
+}
+else
+{
+    <div class="subscribe-title text-center">
+        <h2 style="font-weight:bolder;">@TempData["CheckUser"]</h2>
+    </div>
+}

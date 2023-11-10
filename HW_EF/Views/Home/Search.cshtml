@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "Search";
+}
+@model IEnumerable<Post>
+
+<section id="blog-search" class="blog">
+    <div class="container">
+        @if (Model != null)
+        {
+            <div class="section-header">
+                <h2>News on the topic</h2>
+            </div><!--/.section-header-->
+            
+            <div class="blog-content">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-md-4 col-sm-6">
+                            <partial name="_NewsCardPartial" model="@item"></partial>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="section-header">
+                No news found for your search
+            </div>
+        }
+
+    </div>
+</section>

@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Add";
+}
+@model Post
+
+<h1>Add Post</h1>
+
+<form asp-controller="Posts" asp-action="Create" method="post">
+    <partial name="_PostAddFormPartial" model="@Model"></partial>
+    <input type="submit" value="Create" class="btn btn-primary" />
+</form>
+

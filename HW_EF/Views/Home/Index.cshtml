@@ -1,0 +1,133 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model IEnumerable<Post>
+
+<!--welcome-hero start -->
+<section id="home" class="welcome-hero">
+    <div class="container">
+        <div class="welcome-hero-txt">
+            <h2>always only hot news</h2>
+        </div>
+        <div class="welcome-hero-serch-box">
+            <div class="welcome-hero-form single-welcome-hero-form">
+                <h3>what?</h3>
+                <form asp-controller="Home" asp-action="Search" method="get" class="welcome-hero-form">
+                    <input type="text" name="searchStr" placeholder="Science, technology, sports, culture"/>
+                    @* <input type="submit" value="Search" class="btn btn-primary" /> *@
+                </form>
+                <div class="welcome-hero-form-icon select">
+                    <button type="button" aria-lable="There will be a selector here">
+                        <i class="flaticon-list-with-dots"></i>
+                    </button>
+                    @* <select>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                    <option value="4">Fore</option>
+                    </select> *@
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section><!--/.welcome-hero-->
+<!--welcome-hero end -->
+<!--list-topics start -->
+<section id="list-topics" class="list-topics">
+    <div class="container">
+        <div class="list-topics-content">
+            <ul>
+                <li>
+                    <div class="single-list-topics-content">
+                        <div class="single-list-topics-icon">
+                            <i class="flaticon-restaurant"></i>
+                        </div>
+                        <h2><a href="#">business</a></h2>
+                        <p>150 listings</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="single-list-topics-content">
+                        <div class="single-list-topics-icon">
+                            <i class="flaticon-travel"></i>
+                        </div>
+                        <h2><a href="#">trips</a></h2>
+                        <p>214 listings</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="single-list-topics-content">
+                        <div class="single-list-topics-icon">
+                            <i class="flaticon-building"></i>
+                        </div>
+                        <h2><a href="#">real estate</a></h2>
+                        <p>185 listings</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="single-list-topics-content">
+                        <div class="single-list-topics-icon">
+                            <i class="flaticon-pills"></i>
+                        </div>
+                        <h2><a href="#">medicine</a></h2>
+                        <p>200 listings</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="single-list-topics-content">
+                        <div class="single-list-topics-icon">
+                            <i class="flaticon-transport"></i>
+                        </div>
+                        <h2><a href="#">technique</a></h2>
+                        <p>120 listings</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div><!--/.container-->
+
+</section><!--/.list-topics-->
+        <!--list-topics end-->
+
+<section id="blog" class="blog">
+    <div class="container">
+        <div class="section-header">
+            <h2>The latest news</h2>
+            @* <p>Always upto date with our latest News and Articles </p> *@
+        </div><!--/.section-header-->
+
+        @if (TempData.ContainsKey("Status"))
+        {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Notification!</strong>@TempData["Status"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        <div class="blog-content">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4 col-sm-6">
+                        <partial name="_NewsCardPartial" model="@item"></partial>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts{
+    <script>
+        setTimeout(() => {
+            console.log("Hi");
+            $('.alert').hide();
+        }, 5000);
+    </script>
+}
+

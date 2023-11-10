@@ -1,0 +1,138 @@
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.welcome-hero {
+    height: 500px;
+    width: 100%;
+}
+
+.welcome-hero-txt {
+    padding-top: 110px;
+}
+
+.welcome-hero-serch-box {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+/*.select{
+    text-decoration: none;
+    border: none;
+    background-image: url("../icons/bullet-list.png");
+    appearance: none;
+    background-repeat: no-repeat;
+    background-position: right center;
+}*/
+
+/*-----------NEWS CARDS-------------*/
+
+.single-blog-item {
+    width: 345px;
+    border-radius: 5px;
+}
+
+.single-blog-item > a:active,
+.single-blog-item > a:hover, 
+.single-blog-item > a {
+    text-decoration: none;
+    color: transparent;
+    height: 233px;
+    width: 100%;
+}
+
+.single-blog-item-img{
+    height: 100%;
+    width: 100%;
+}
+
+.single-blog-item-img > img {
+    height: 233px;
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.single-blog-item-txt {
+    height: 257px;
+    width: 100%;
+}
+
+.blog-item-txt-content {
+    margin: 0;
+    -webkit-line-clamp: 5;
+    display: -webkit-box; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.list-topics {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.blog, .section-header {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/*----------------*/
+
+.login-form-group{
+
+}
+
+.login-form > .subscription-input-form,
+.login-form-group {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+/*.subscription-input-group .subscription-input-form {
+    margin-top: 5px;
+    font-size: 14px;
+}*/
+
+.form-label {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.appsLand-btn{
+    position:relative;
+    line-height:unset;
+    margin-top: 30px;
+}
+
+.subscribe-title{
+    margin-bottom: 10px;
+}
+
+.registration-link{
+    margin-top: 20px;
+}
+
+.registration-link:hover {
+    text-shadow: 0 0px 15px rgba(21,19,19,.4);
+    -webkit-transition: 0.3s linear;
+    -moz-transition: 0.3s linear;
+    -o-transition: 0.3s linear;
+    transition: 0.3s linear;
+}

@@ -1,0 +1,35 @@
+﻿@model Post
+
+<div class="mb-3">
+    <label asp-for="Title" class="form-label"></label>
+    <input asp-for=Title class="form-control" placeholder="Enter title">
+    <span asp-validation-for="Title" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Category" class="form-label"></label></br>
+    <select asp-for="Category" class="form-select select">
+        <option>Select a category</option>
+        <option value="Culture">Culture</option>
+        <option value="Economy">Economy</option>
+        <option value="Science and technology">Science and technology</option>
+        <option value="Policy">Policy</option>
+        <option value="Society">Society</option>
+        <option value="Social media">Social media</option>
+        <option value="Business">Business</option>
+        <option value="Medicine">Medicine</option>
+        <option value="Trips">Trips</option>
+        <option value="Rest">Rest</option>
+        <option value="Real estate">Real estate</option>
+    </select>
+    <span asp-validation-for="Category" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="ImageUrl" class="form-label"></label>
+    <input asp-for="ImageUrl" class="form-control" placeholder="Image Url">
+    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Content" class="form-label"></label>
+    <textarea rows="10" asp-for="Content" class="form-control" placeholder="Content"></textarea>
+    <span asp-validation-for="Content" class="text-danger"></span>
+</div>

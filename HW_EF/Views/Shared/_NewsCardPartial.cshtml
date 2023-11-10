@@ -1,0 +1,17 @@
+﻿@model Post
+
+<div class="single-blog-item">
+<a asp-controller="Posts" asp-action="Details" asp-route-id="@Model.Id">
+	<div class="single-blog-item-img">
+		<img src="@Model.ImageUrl" onerror="event.target.src='/logo/logo_news.png'" alt="blog image">
+	</div>
+	</a>
+	<div class="single-blog-item-txt">
+		<h2><a asp-controller="Posts" asp-action="Details" asp-route-id="@Model.Id">@Model.Title</a></h2>
+		<h4>posted <span>by</span> <a href="#">admin</a> @Model.Date</h4>
+		<p class="blog-item-txt-content">@Model.Content</p>
+	</div>
+
+</div>
+
+@*TODO: вместо admin поставить ссылку на автора*@
