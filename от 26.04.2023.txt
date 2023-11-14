@@ -1,0 +1,1 @@
+﻿Создать CRUD(VIEW AND CONTROLLER) с помощью генератора кода

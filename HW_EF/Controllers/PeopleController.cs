@@ -20,8 +20,23 @@ namespace HW_EF.Controllers
         }
 
         [HttpGet]
-        public IActionResult PersonalArea(PersonalArea personalArea)
+        public async Task<IActionResult> PersonalArea(int id)
         {
+            var user = await _context.Persons
+                             .Include(p => p.UserPosts)
+                             .FirstOrDefaultAsync(m => m.Id == id);
+
+            if(user == null)
+            {
+                return NotFound();
+            }
+
+            var personalArea = new PersonalArea
+            {
+                User = user,
+                Posts = user.UserPosts
+            };
+
             return View(personalArea);
         }
 

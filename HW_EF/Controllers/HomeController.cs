@@ -47,14 +47,14 @@ namespace HW_EF.Controllers
             {
                 var user = await blogDbContext.Persons.FirstAsync(u => u.Email == person.Email 
                                                         && u.Password == person.Password);
-                var posts = blogDbContext.Posts.Where(p => p.PersonId == user.Id);
+                //var posts = blogDbContext.Posts.Where(p => p.PersonId == user.Id);
 
-                var personalArea = new PersonalArea()
-                {
-                    User = user,
-                    Posts = posts
-                };
-                return RedirectToAction("PersonalArea", "People", new { reason = personalArea});
+                //var personalArea = new PersonalArea()
+                //{
+                //    User = user,
+                //    Posts = posts
+                //};
+                return RedirectToAction("PersonalArea", "People", new { id = user.Id});
             }
 
             return View(TempData["CheckUser"] = "No users!");
