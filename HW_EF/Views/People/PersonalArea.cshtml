@@ -5,6 +5,7 @@
 
 @if (Model != null)
 {
+    <hr>
     <section id="user-menu" class="my-navbar">
         <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy" data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
             <div class="container">
@@ -13,7 +14,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     @* <a class="navbar-brand" asp-controller="Home" asp-action="Index">Личный<span>кабинет</span></a> *@
-                    <a class="navbar-brand" asp-controller="Home" asp-action="Index">Personal<span>Area</span> @Model.User.Nickname</a>
+                    <a class="navbar-brand" asp-controller="Home" asp-action="Index">Personal<span>Area</span>  @Model.User.Nickname</a>
                 </div>
                 <div>
                     <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
