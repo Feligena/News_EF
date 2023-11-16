@@ -19,7 +19,8 @@ namespace HW_EF.Models
         public DateTime Date { get; set; }
 
         [Required]
-        public string Category { get; set; }
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
 
         public int? PersonId { get; set; }
         public Person? Person { get; set; }
