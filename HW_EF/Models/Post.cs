@@ -18,13 +18,13 @@ namespace HW_EF.Models
         public string ImageUrl { get; set; }
         public DateTime Date { get; set; }
 
-        [Required]
+        [Display(Name = "Category ")]
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public Category? Category { get; set; }
 
         public int? PersonId { get; set; }
         public Person? Person { get; set; }
 
-        public IEnumerable<PostsTags>? PostsTags { get; set; }
+        public IEnumerable<PostsTags> PostsTags { get; set; }
     }
 }

@@ -11,8 +11,13 @@
     <span asp-validation-for="CategoryId" class="text-danger"></span>
 </div>
 <div class="mb-3">
+    <label class="form-label">Tags </label>
+    <select name="tags" id="tags" asp-items="@ViewBag.tags" class="form-control" multiple aria-label="Default select example"></select>
+</div>
+<div class="mb-3">
     <label asp-for="ImageUrl" class="form-label"></label>
     <input asp-for="ImageUrl" class="form-control" placeholder="Image Url">
+    <input asp-for="ImageUrl" hidden>
     <span asp-validation-for="ImageUrl" class="text-danger"></span>
 </div>
 <div class="mb-3">

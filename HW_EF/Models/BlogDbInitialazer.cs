@@ -21,6 +21,19 @@
                 context.Categories.Add(new Category { Name = "Real estate" });
                 context.SaveChanges();
             }
+
+            if (!context.Tags.Any())
+            {
+                context.Tags.Add(new Tag { Name = "City" });
+                context.Tags.Add(new Tag { Name = "Region" });
+                context.Tags.Add(new Tag { Name = "A country" });
+                context.Tags.Add(new Tag { Name = "World" });
+                context.Tags.Add(new Tag { Name = "Other countries" });
+                context.Tags.Add(new Tag { Name = "Eggheads" });
+                context.Tags.Add(new Tag { Name = "Game of Thrones" });
+                context.Tags.Add(new Tag { Name = "Funny today" });
+                context.SaveChanges();
+            }
         }
     }
 }

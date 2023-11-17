@@ -20,40 +20,11 @@
     <a asp-controller="Home" asp-action="Index">Back to List</a>
 </div>
 
-@* <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-<input type="hidden" asp-for="Id" />
-<div class="form-group">
-    <label asp-for="Title" class="control-label"></label>
-    <input asp-for="Title" class="form-control" />
-    <span asp-validation-for="Title" class="text-danger"></span>
-</div>
-<div class="form-group">
-    <select asp-for="Category" class="form-select">
-        <option>Select a category</option>
-        <option value="Culture">Culture</option>
-        <option value="Economy">Economy</option>
-        <option value="Science and technology">Science and technology</option>
-        <option value="Policy">Policy</option>
-        <option value="Society">Society</option>
-        <option value="Social media">Social media</option>
-        <option value="Business">Business</option>
-        <option value="Medicine">Medicine</option>
-        <option value="Trips">Trips</option>
-        <option value="Rest">Rest</option>
-        <option value="Real estate">Real estate</option>
-    </select>
-    <span asp-validation-for="Category" class="text-danger"></span>
-</div>
-<div class="form-group">
-    <label asp-for="Content" class="control-label"></label>
-    <input asp-for="Content" class="form-control" />
-    <span asp-validation-for="Content" class="text-danger"></span>
-</div>
-<div class="form-group">
-    <label asp-for="ImageUrl" class="control-label"></label>
-    <input asp-for="ImageUrl" class="form-control" />
-    <span asp-validation-for="ImageUrl" class="text-danger"></span>
-</div>
-<div class="form-group">
-    <input type="submit" value="Save" class="btn btn-primary" />
-</div> *@
+@section Scripts {
+
+    <script src="~/lib/chosen/chosen.jquery.min.js"></script>
+
+    <script>
+        $("#tags").chosen();
+    </script>
+}

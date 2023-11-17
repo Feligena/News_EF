@@ -43,24 +43,33 @@ namespace HW_EF.Controllers
         public IActionResult Create()
         {
             ViewBag.categories = new SelectList(_context.Categories, "Id", "Name");
+            ViewBag.tags = new MultiSelectList(_context.Tags, "Id", "Name");
             return View();
         }
+
 
         // POST: Posts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Content,ImageUrl,Category")] Post post)
+        public async Task<IActionResult> Create([Bind("Id,Title,Content,ImageUrl,CategoryId")] Post post, int[] tags)
         {
+            
             if (ModelState.IsValid)
             {
                 post.Date = DateTime.Now;
                 await _context.AddAsync(post);
                 await _context.SaveChangesAsync();
 
-                TempData["Status"] = "New post added";
+                await _context.PostsTags.AddRangeAsync(tags.Select(t => new PostsTags { PostId = post.Id, TagId = t }));
+                await _context.SaveChangesAsync();
 
+                //TempData["Status"] = "New post added";
                 return RedirectToAction("Index", "Home");
             }
+
+            ViewBag.categories = new SelectList(_context.Categories, "Id", "Name");
+            ViewBag.tags = new MultiSelectList(_context.Tags, "Id", "Name");
+
             return View(post);
         }
 
@@ -84,7 +93,7 @@ namespace HW_EF.Controllers
         // POST: Posts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,ImageUrl,Category")] Post post)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,ImageUrl,CategoryId")] Post post)
         {
             if (id != post.Id)
             {
