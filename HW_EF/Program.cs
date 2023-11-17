@@ -13,6 +13,8 @@ builder.Services.AddDbContext<BlogDbContext>(options =>
 
 var app = builder.Build();
 
+BlogDbInitialazer.Seed(app);
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

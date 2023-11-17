@@ -24,5 +24,7 @@ namespace HW_EF.Models
 
         public int? PersonId { get; set; }
         public Person? Person { get; set; }
+
+        public IEnumerable<PostsTags>? PostsTags { get; set; }
     }
 }

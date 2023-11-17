@@ -18,13 +18,6 @@ namespace HW_EF.Controllers
             _context = context;
         }
 
-        //// GET: Posts
-        //public async Task<IActionResult> Index()
-        //{
-        //      return _context.Posts != null ? 
-        //                  View(await _context.Posts.ToListAsync()) :
-        //                  Problem("Entity set 'BlogDbContext.Posts'  is null.");
-        //}
 
         // GET: Posts/Details/5
         [HttpGet]
@@ -49,6 +42,7 @@ namespace HW_EF.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewBag.categories = new SelectList(_context.Categories, "Id", "Name");
             return View();
         }
 
