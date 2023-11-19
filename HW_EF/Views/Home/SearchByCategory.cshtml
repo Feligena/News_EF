@@ -4,15 +4,16 @@
 }
 
 @model IEnumerable<Post>
-
+<hr />
 <h2>SearchByCategory</h2>
 
-@if(@Model != null)
-{
 <section id="blog" class="blog">
     <div class="container">
+
+    @if(@Model.Count() != 0)
+    {
         <div class="section-header">
-            @* <h2>@TempData["postsCategory"]</h2> *@
+            <h2>@TempData["postsCategory"]</h2>
         </div>
 
         <div class="blog-content">
@@ -25,12 +26,13 @@
                 }
             </div>
         </div>
+    }
+    else
+    {
+        <div class="subscribe-title text-center">
+            <h2 style="font-weight:bolder;">No Content</h2>
+        </div>
+    }
+
     </div>
-    </section>
-}
-else
-{
-    <div class="subscribe-title text-center">
-        <h2 style="font-weight:bolder;">No Content</h2>
-    </div>
-}
+</section>

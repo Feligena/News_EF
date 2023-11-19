@@ -47,8 +47,9 @@ namespace HW_EF.Controllers
         [HttpGet]
         public IActionResult SearchByCategory(int id)
         {
-            var posts = blogDbContext.Posts.Where(p => p.CategoryId == id).Include(x => x.Category);
-            TempData["postsCategory"] = blogDbContext.Categories.Where(c => c.Id == id);
+            var posts = blogDbContext.Posts.Include(x => x.Category).Where(p => p.CategoryId == id);
+            var category = blogDbContext.Categories.First(c => c.Id == id);
+            TempData["postsCategory"] = category.Name;
             return View(posts);
         }
 
