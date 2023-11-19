@@ -7,6 +7,10 @@
 <h2>Login</h2>
 
 <hr />
+@if (TempData["checkEmail"] != null)
+{
+    <div>@TempData["checkEmail"]</div>
+}
 <div class="row">
     <div class="col-md-4">
         <form asp-controller="People" asp-action="Create">

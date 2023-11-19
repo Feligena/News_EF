@@ -29,9 +29,6 @@ namespace HW_EF.Controllers
                                          .ThenInclude(x => x.Post)
             };
             return View(homeIndexViewModel);
-            //return View(blogDbContext.Posts.Include(x => x.PostsTags)
-            //                               .ThenInclude(t => t.Tag)
-            //                               .Include(x => x.Category));
         }
 
         [HttpGet]

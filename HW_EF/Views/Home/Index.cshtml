@@ -38,6 +38,9 @@
 </section><!--/.welcome-hero-->
 <!--welcome-hero end -->
 <!--list-topics start -->
+@{
+    string[] iconClass = { "restaurant", "travel", "building", "pills", "transport" };
+}
 <section id="list-topics" class="list-topics">
     <div class="container">
         <div class="list-topics-content">
@@ -47,7 +50,7 @@
                     <li>
                         <div class="single-list-topics-content">
                             <div class="single-list-topics-icon">
-                                <i class="flaticon-restaurant"></i>
+                                <i class="flaticon-@iconClass[i]"></i>
                             </div>
                             <h2><a href="#">@Model.Categories.ToList()[i].Name</a></h2>
                             <p>@Model.Categories.ToList()[i].Posts.Count() posts</p>

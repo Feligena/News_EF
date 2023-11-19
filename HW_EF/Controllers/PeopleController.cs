@@ -71,12 +71,22 @@ namespace HW_EF.Controllers
         {
             if(person.Password == password2)
             {
-				if (ModelState.IsValid)
-				{
-					_context.Add(person);
-					await _context.SaveChangesAsync();
-					return RedirectToAction("PersonalArea", "People", person);
-				}
+                var checkEmail = _context.Persons.First(p => p.Email == person.Email);
+                if(checkEmail == null)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        _context.Add(person);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction("PersonalArea", "People", person);
+                    }
+                }
+                else
+                {
+                    TempData["chackEmail"] = "This email is already taken";
+                    return View(person);
+                }
+                
 			}
             
             return View(person);
