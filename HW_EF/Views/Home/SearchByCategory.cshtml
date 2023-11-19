@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "SearchByCategory";
+}
+
+@model IEnumerable<Post>
+
+<h2>SearchByCategory</h2>
+
+@if(@Model != null)
+{
+<section id="blog" class="blog">
+    <div class="container">
+        <div class="section-header">
+            @* <h2>@TempData["postsCategory"]</h2> *@
+        </div>
+
+        <div class="blog-content">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4 col-sm-6">
+                        <partial name="_NewsCardPartial" model="@item"></partial>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    </section>
+}
+else
+{
+    <div class="subscribe-title text-center">
+        <h2 style="font-weight:bolder;">No Content</h2>
+    </div>
+}

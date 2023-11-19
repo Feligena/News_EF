@@ -7,7 +7,7 @@
 <h2>Login</h2>
 
 <hr />
-@if (TempData["checkEmail"] != null)
+@if(TempData.ContainsKey("chackEmail"))
 {
     <div>@TempData["checkEmail"]</div>
 }

@@ -22,9 +22,7 @@ namespace HW_EF.Controllers
             var homeIndexViewModel = new HomeIndexViewModel
             {
                 Categories = blogDbContext.Categories.Include(x => x.Posts),
-                Posts = blogDbContext.Posts.Include(x => x.PostsTags)
-                                               .ThenInclude(t => t.Tag)
-                                               .Include(x => x.Category),
+                Posts = blogDbContext.Posts.Include(x => x.Category),
                 Tags = blogDbContext.Tags.Include(x => x.PostsTags)
                                          .ThenInclude(x => x.Post)
             };
@@ -41,12 +39,17 @@ namespace HW_EF.Controllers
                                            .Include(x => x.Category)
                                            .Where(x => x.Category == searchStr.Select(s => s.ToString()))
                                            .Where(t => t.Title == searchStr);
-
-                //var request = blogDbContext.Posts.Where(t => t.Title == searchStr ||);
-
                 return View(posts);
             }
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult SearchByCategory(int id)
+        {
+            var posts = blogDbContext.Posts.Where(p => p.CategoryId == id).Include(x => x.Category);
+            TempData["postsCategory"] = blogDbContext.Categories.Where(c => c.Id == id);
+            return View(posts);
         }
 
         [HttpGet]

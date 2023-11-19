@@ -52,7 +52,9 @@
                             <div class="single-list-topics-icon">
                                 <i class="flaticon-@iconClass[i]"></i>
                             </div>
-                            <h2><a href="#">@Model.Categories.ToList()[i].Name</a></h2>
+                            <h2>
+                                <a asp-controller="Home" asp-action="SearchByCategory" asp-route-id="@Model.Categories.ToList()[i].Id">@Model.Categories.ToList()[i].Name</a>
+                            </h2>
                             <p>@Model.Categories.ToList()[i].Posts.Count() posts</p>
                         </div>
                     </li>
