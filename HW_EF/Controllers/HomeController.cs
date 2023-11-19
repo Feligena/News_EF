@@ -19,9 +19,19 @@ namespace HW_EF.Controllers
 
         public IActionResult Index()
         {
-            return View(blogDbContext.Posts.Include(x => x.PostsTags)
-                                           .ThenInclude(t => t.Tag)
-                                           .Include(x => x.Category));
+            var homeIndexViewModel = new HomeIndexViewModel
+            {
+                Categories = blogDbContext.Categories.Include(x => x.Posts),
+                Posts = blogDbContext.Posts.Include(x => x.PostsTags)
+                                               .ThenInclude(t => t.Tag)
+                                               .Include(x => x.Category),
+                Tags = blogDbContext.Tags.Include(x => x.PostsTags)
+                                         .ThenInclude(x => x.Post)
+            };
+            return View(homeIndexViewModel);
+            //return View(blogDbContext.Posts.Include(x => x.PostsTags)
+            //                               .ThenInclude(t => t.Tag)
+            //                               .Include(x => x.Category));
         }
 
         [HttpGet]

@@ -2,7 +2,8 @@
     ViewData["Title"] = "Home Page";
 }
 
-@model IEnumerable<Post>
+@* @model IEnumerable<Post> *@
+@model HomeIndexViewModel
 
 <!--welcome-hero start -->
 <section id="home" class="welcome-hero">
@@ -41,51 +42,18 @@
     <div class="container">
         <div class="list-topics-content">
             <ul>
-                <li>
-                    <div class="single-list-topics-content">
-                        <div class="single-list-topics-icon">
-                            <i class="flaticon-restaurant"></i>
+                @for (int i = 0; i < 5; i++)
+                {
+                    <li>
+                        <div class="single-list-topics-content">
+                            <div class="single-list-topics-icon">
+                                <i class="flaticon-restaurant"></i>
+                            </div>
+                            <h2><a href="#">@Model.Categories.ToList()[i].Name</a></h2>
+                            <p>@Model.Categories.ToList()[i].Posts.Count() posts</p>
                         </div>
-                        <h2><a href="#">business</a></h2>
-                        <p>150 listings</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="single-list-topics-content">
-                        <div class="single-list-topics-icon">
-                            <i class="flaticon-travel"></i>
-                        </div>
-                        <h2><a href="#">trips</a></h2>
-                        <p>214 listings</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="single-list-topics-content">
-                        <div class="single-list-topics-icon">
-                            <i class="flaticon-building"></i>
-                        </div>
-                        <h2><a href="#">real estate</a></h2>
-                        <p>185 listings</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="single-list-topics-content">
-                        <div class="single-list-topics-icon">
-                            <i class="flaticon-pills"></i>
-                        </div>
-                        <h2><a href="#">medicine</a></h2>
-                        <p>200 listings</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="single-list-topics-content">
-                        <div class="single-list-topics-icon">
-                            <i class="flaticon-transport"></i>
-                        </div>
-                        <h2><a href="#">technique</a></h2>
-                        <p>120 listings</p>
-                    </div>
-                </li>
+                    </li>
+                }
             </ul>
         </div>
     </div><!--/.container-->
@@ -97,7 +65,6 @@
     <div class="container">
         <div class="section-header">
             <h2>The latest news</h2>
-            @* <p>Always upto date with our latest News and Articles </p> *@
         </div><!--/.section-header-->
 
         @if (TempData.ContainsKey("Status"))
@@ -110,7 +77,7 @@
 
         <div class="blog-content">
             <div class="row">
-                @foreach (var item in Model)
+                @foreach (var item in Model.Posts)
                 {
                     <div class="col-md-4 col-sm-6">
                         <partial name="_NewsCardPartial" model="@item"></partial>
