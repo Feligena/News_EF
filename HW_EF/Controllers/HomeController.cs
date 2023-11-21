@@ -30,15 +30,16 @@ namespace HW_EF.Controllers
         }
 
         [HttpGet]
-        public IActionResult Search(string searchStr) //TODO: сделать так, чтобы поиск выполнялся по набору букв, а не по идентичному названию
+        public IActionResult Search(string searchStr) 
         {
             if(!string.IsNullOrWhiteSpace(searchStr))
             {
                 var posts = blogDbContext.Posts.Include(x => x.PostsTags)
                                            .ThenInclude(t => t.Tag)
                                            .Include(x => x.Category)
-                                           .Where(x => x.Category == searchStr.Select(s => s.ToString()))
-                                           .Where(t => t.Title == searchStr);
+                                           .Where(x => x.Title.Contains(searchStr));
+                                           //.Where(x => x.Category == searchStr.Select(s => s.ToString()))
+                                           //.Where(t => t.Title == searchStr);
                 return View(posts);
             }
             return View();
