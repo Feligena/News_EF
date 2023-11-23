@@ -17,8 +17,7 @@ namespace HW_EF.Models
         public string Nickname { get; set; }
 
         [Required]
-        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
-        public string Password { get; set; }
+        public string PasswordHash { get; set; }
 
         [Required]
         [EmailAddress]
@@ -28,6 +27,8 @@ namespace HW_EF.Models
         [Phone]
         public string Phone { get; set; }
         public ICollection<Post> UserPosts { get; set; }
+
+        public bool IsAdmin { get; set; } = false;
 
         public Person()
         {

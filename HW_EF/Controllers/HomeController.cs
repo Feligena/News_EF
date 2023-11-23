@@ -60,19 +60,19 @@ namespace HW_EF.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Login(Person person)
-        {
-            if(person != null)
-            {
-                var user = await blogDbContext.Persons.FirstAsync(u => u.Email == person.Email 
-                                                        && u.Password == person.Password);
-                return RedirectToAction("PersonalArea", "People", new { id = user.Id});
-            }
-            return View(TempData["CheckUser"] = "No users!");
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> Login(Person person)
+        //{
+        //    if(person != null)
+        //    {
+        //        var user = await blogDbContext.Persons.FirstAsync(u => u.Email == person.Email 
+        //                                                && u.Password == person.Password);
+        //        return RedirectToAction("PersonalArea", "People", new { id = user.Id});
+        //    }
+        //    return View(TempData["CheckUser"] = "No users!");
+        //}
 
-        
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

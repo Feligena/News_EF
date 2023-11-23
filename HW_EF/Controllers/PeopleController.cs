@@ -7,24 +7,45 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HW_EF.Models;
 using HW_EF.ViewModel;
+using HW_EF.Middlewares.Services;
+using HW_EF.Encryptors;
 
 namespace HW_EF.Controllers
 {
     public class PeopleController : Controller
     {
         private readonly BlogDbContext _context;
+        private readonly IUserManager userManager;
 
         public PeopleController(BlogDbContext context)
         {
             _context = context;
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (userManager.Login(model.Email, model.Password))
+                {
+                    RedirectToAction("PersonalArea", "People", new { email = model.Email });
+                }
+
+            }
+
+            ModelState.AddModelError("all", "Incorrect username or password!");
+
+            return View();
+
+        }
+
         [HttpGet]
-        public async Task<IActionResult> PersonalArea(int id)
+        public async Task<IActionResult> PersonalArea(string email)
         {
             var user = await _context.Persons
                              .Include(p => p.UserPosts)
-                             .FirstOrDefaultAsync(m => m.Id == id);
+                             .FirstOrDefaultAsync(m => m.Email == email);
 
             if(user == null)
             {
@@ -67,33 +88,55 @@ namespace HW_EF.Controllers
         // POST: People/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Surname,Nickname,Password,Email,Phone")] Person person, string password2)
+        public async Task<IActionResult> Create(RegistrationViewModel model)
         {
-            if(person.Password == password2)
+            if (ModelState.IsValid)
             {
-                var checkEmail = _context.Persons.First(p => p.Email == person.Email);
-                if(checkEmail == null)
+                await _context.Persons.AddAsync(new Person
                 {
-                    if (ModelState.IsValid)
-                    {
-                        _context.Add(person);
-                        await _context.SaveChangesAsync();
-                        return RedirectToAction("PersonalArea", "People", person);
-                    }
-                }
-                else
-                {
-                    TempData["chackEmail"] = "This email is already taken";
-                    return View(person);
-                }
-                
-			}
-            
-            return View(person);
+                    Email = model.Email,
+                    PasswordHash = Sha256Encryptor.Encrypt(model.Password),
+                    IsAdmin = false
+                });
+                await _context.SaveChangesAsync();
+
+
+
+                return RedirectToAction("Index", "Home");
+            }
+            return View(model);
         }
 
-        // GET: People/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+            //     [HttpPost]
+            //     [ValidateAntiForgeryToken]
+            //     public async Task<IActionResult> Create([Bind("Id,Name,Surname,Nickname,Password,Email,Phone")] Person person, string password2)
+            //     {
+            //         if(person.Password == password2)
+            //         {
+            //             var checkEmail = _context.Persons.First(p => p.Email == person.Email);
+            //             if(checkEmail == null)
+            //             {
+            //                 if (ModelState.IsValid)
+            //                 {
+            //                     _context.Add(person);
+            //                     await _context.SaveChangesAsync();
+            //                     return RedirectToAction("PersonalArea", "People", person);
+            //                 }
+            //             }
+            //             else
+            //             {
+            //                 TempData["chackEmail"] = "This email is already taken";
+            //                 return View(person);
+            //             }
+
+            //}
+
+            //         return View(person);
+            //     }
+
+            // GET: People/Edit/5
+
+            public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Persons == null)
             {
@@ -118,7 +161,7 @@ namespace HW_EF.Controllers
                 return NotFound();
             }
 
-            if(person.Password == password2)
+            //if(person.Password == password2)
             {
 				if (ModelState.IsValid)
 				{
